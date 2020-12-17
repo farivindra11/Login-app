@@ -1,5 +1,7 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class tb_pasar extends Model {
     /**
@@ -9,24 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      tb_pasar.hasOne(models.tb_user, {
-        foreignKey: "pasar_id",
-      });
     }
-  }
-  tb_pasar.init(
-    {
-      id_pasar: DataTypes.INTEGER,
-      nama_pasar: DataTypes.STRING,
-      alamat_pasar: DataTypes.STRING,
-      kecamatan: DataTypes.STRING,
-      koor_lat: DataTypes.STRING,
-      koor_long: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: "tb_pasar",
-    }
-  );
+  };
+  tb_pasar.init({
+    id_pasar: DataTypes.INTEGER,
+    nama_pasar: DataTypes.STRING,
+    alamat_pasar: DataTypes.STRING,
+    kecamatan: DataTypes.STRING,
+    koor_lat: DataTypes.STRING,
+    koor_long: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'tb_pasar',
+  });
   return tb_pasar;
 };

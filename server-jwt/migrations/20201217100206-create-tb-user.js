@@ -1,27 +1,36 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("tb_pasar", {
-      id_pasar: {
+    await queryInterface.createTable("tb_users", {
+      id: {
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      nama_pasar: {
+      id_user: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+      },
+      email: {
         type: Sequelize.STRING,
       },
-      alamat_pasar: {
+      password: {
         type: Sequelize.STRING,
       },
-      kecamatan: {
+      nip: {
         type: Sequelize.STRING,
       },
-      koor_lat: {
+      nama: {
         type: Sequelize.STRING,
       },
-      koor_long: {
+      level: {
         type: Sequelize.STRING,
+      },
+      pasar_id: {
+        type: Sequelize.INTEGER,
+      },
+      last_login: {
+        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +43,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("tb_pasar");
+    await queryInterface.dropTable("tb_users");
   },
 };

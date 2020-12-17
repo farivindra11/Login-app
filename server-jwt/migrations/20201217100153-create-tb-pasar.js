@@ -1,43 +1,42 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("tb_user", {
-      id_user: {
+    await queryInterface.createTable("tb_pasars", {
+      id: {
         allowNull: false,
         autoIncrement: true,
+        type: Sequelize.INTEGER,
+      },
+      id_pasar: {
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        type: Sequelize.INTEGER,
       },
-      email: {
+      nama_pasar: {
         type: Sequelize.STRING,
       },
-      password: {
+      alamat_pasar: {
         type: Sequelize.STRING,
       },
-      nip: {
+      kecamatan: {
         type: Sequelize.STRING,
       },
-      nama: {
+      koor_lat: {
         type: Sequelize.STRING,
       },
-      level: {
+      koor_long: {
         type: Sequelize.STRING,
       },
-      pasar_id: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        references: {
-          model: "tb_pasar",
-          key: "id_pasar",
-          as: "pasar_id",
-        },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
       },
-      last_login: {
+      updatedAt: {
+        allowNull: false,
         type: Sequelize.DATE,
       },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("tb_user");
+    await queryInterface.dropTable("tb_pasars");
   },
 };
