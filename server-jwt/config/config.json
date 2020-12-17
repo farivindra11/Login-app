@@ -2,7 +2,7 @@
   "development": {
     "username": "fariv",
     "password": "fariv11",
-    "database": "siskaperbapo",
+    "database": "siska_perbapo",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
