@@ -2,14 +2,11 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("tb_users", {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        type: Sequelize.INTEGER,
-      },
       id_user: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         primaryKey: true,
+        autoIncrement: true,
       },
       email: {
         type: Sequelize.STRING,
@@ -26,18 +23,15 @@ module.exports = {
       level: {
         type: Sequelize.STRING,
       },
-      pasar_id: {
+      id_pasar: {
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+          model: "tb_pasars",
+          key: "id_pasar",
+        },
       },
       last_login: {
-        type: Sequelize.DATE,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
     });

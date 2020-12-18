@@ -2,14 +2,11 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("tb_pasars", {
-      id: {
+      id_pasar: {
         allowNull: false,
         autoIncrement: true,
-        type: Sequelize.INTEGER,
-      },
-      id_pasar: {
-        type: Sequelize.INTEGER,
         primaryKey: true,
+        type: Sequelize.INTEGER,
       },
       nama_pasar: {
         type: Sequelize.STRING,
@@ -25,14 +22,6 @@ module.exports = {
       },
       koor_long: {
         type: Sequelize.STRING,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
       },
     });
   },
