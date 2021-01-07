@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../App";
-// import "./Login.css";
+import "./css/login.css"
 
 const qs = require("querystring");
 const api = "http://localhost:3001";
@@ -51,14 +51,13 @@ export default function LoginComp() {
       data: qs.stringify(requestBody),
       headers: config
     }).then(res => {
-          console.log(res);
           if (res.data.auth === true) {
             dispatch({
               type: "LOGIN",
               payload: res.data,
-            });
-            console.log(res.data);
-          } else {
+            })
+          }
+          else {
             setData({
               ...data,
               isSubmitting: false,

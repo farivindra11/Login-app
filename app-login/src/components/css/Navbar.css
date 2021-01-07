@@ -1,0 +1,23 @@
+.dropdown-menu {
+    /* background: red; */
+    width: 80px;
+    position: absolute;
+    top: 48px;
+    list-style: none;
+    text-align: start;
+  }
+  .navbar-light {
+    background-color: rgb(245, 245, 245);
+  }
+  .loginbut {
+    color: rgb(133, 125, 125);
+    font-weight: 500;
+    margin: 0;
+  }
+  .loginbut:hover {
+    background: #ffffff;
+    color: salmon;
+    padding: 8px 10px;
+    position: relative;
+  }
+  

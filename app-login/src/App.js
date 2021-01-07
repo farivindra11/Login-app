@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer, createContext } from "react";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import LoginComp from "./components/LoginComp";
+import HomeComp from "./components/HomeComp";
 
-function App() {
+/* context => data dan fungsin jadi lebih global */
+export const AuthContext = createContext();
+
+/* initial state */
+const initialState = {
+  isAuthentication: false,
+  username: null,
+  accessToken: null,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "LOGIN":
+      localStorage.setItem("username", JSON.stringify(action.payload.username));
+      localStorage.setItem("token", JSON.stringify(action.payload.accessToken));
+      return {
+        ...state,
+        isAuthentication: true,
+        username: action.payload.username,
+        token: action.payload.accessToken,
+      };
+
+    case "LOGOUT":
+      localStorage.clear();
+      return {
+        ...state,
+        isAuthentication: false,
+        username: action.payload.username,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export default function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <Switch>
+        <AuthContext.Provider
+          value={{
+            state,
+            dispatch,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          {!state.isAuthentication ? (
+            <Redirect to={{ pathname: "/login" }} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/homepage",
+              }}
+            />
+          )}
+          <Route exact path="/login" component={LoginComp} />
+          <Route exact path="/homepage" component={HomeComp} />
+        </AuthContext.Provider>
+      </Switch>
+    </BrowserRouter>
   );
 }
-
-export default App;
