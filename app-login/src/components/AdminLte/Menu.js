@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Router/App";
 import Header from './Header'
@@ -8,9 +8,21 @@ import Footer from "./Footer";
 export default function Menu() {
   const { state, dispatch } = useContext(AuthContext);
 
+  const timeOut = () => {
+    setTimeout(()=>{
+      console.log('token telah berakhir');
+      dispatch({
+        type: 'LOGOUT'
+      })
+    }, state.tokenExpires)
+  }
   // if(!state.isAuthentication){
   //   return <Redirect to="/login" />
   // }
+
+  useEffect(()=> {
+    timeOut()
+  }, [])
 
   return (
     <Fragment>
