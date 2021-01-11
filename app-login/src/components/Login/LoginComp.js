@@ -1,12 +1,13 @@
 import React, { Fragment, useContext, useState } from "react";
 import axios from "axios";
+import { Link} from "react-router-dom";
 import { AuthContext } from "../../Router/App";
 import "../css/login.css";
 
 const qs = require("querystring");
 const api = "http://localhost:3001";
 
-export default function LoginComp() {
+export default function LoginComp(props) {
   const { dispatch } = useContext(AuthContext);
 
   const initialState = {
@@ -17,7 +18,6 @@ export default function LoginComp() {
   };
 
   const [data, setData] = useState(initialState);
-  // console.log(data);
 
   const handleInputChange = (event) => {
     setData({
@@ -56,6 +56,9 @@ export default function LoginComp() {
           type: "LOGIN",
           payload: res.data,
         });
+
+        // redirect to dashboard admin
+        props.history.push("/admin");
       } else {
         setData({
           ...data,
@@ -64,7 +67,9 @@ export default function LoginComp() {
         });
       }
       throw res;
-    });
+    }).catch(e =>{
+      console.log(e);
+    })
   };
 
   return (
@@ -72,11 +77,17 @@ export default function LoginComp() {
       <>
         <div className="sidenav">
           <div className="login-main-text">
-            <h2>
-              Application
-              <br /> Login Page
-            </h2>
-            <p>Login or register from here to access.</p>
+            <h2>Application Login Page</h2>
+            <br />
+            <h1>Back to Dashboard</h1>
+            <Link
+              to="/"
+              onClick={() => {
+                window.location.href = "/";
+              }}
+            >
+              <button className="btn btn-primary">Kembali</button>
+            </Link>
           </div>
         </div>
         <div className="main">
