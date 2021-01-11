@@ -51,7 +51,7 @@ export default function App() {
         </Route>
 
         {/*==== Route AdminLTE ==== */}
-        <Route path="/update-harga">
+        <Route exact path="/update-harga">
           <Coba />
         </Route>
         {/* ================ */}
@@ -73,7 +73,7 @@ export default function App() {
           <Route path="/login">
             <LoginComp />
           </Route>
-          <Route path="/admin" component={Menu} />
+          <Route exact path="/admin" component={Menu} />
         </AuthContext.Provider>
       </Switch>
     </BrowserRouter>
