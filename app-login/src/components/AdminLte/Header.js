@@ -10,7 +10,7 @@ export default function Header() {
             <a
               className="nav-link"
               data-widget="pushmenu"
-              href="#"
+              href="google.com"
               role="button"
             >
               <i className="fas fa-bars" />

@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { AuthContext } from "../../Router/App";
 import Header from './Header'
 import Content from './Content'
@@ -16,13 +16,18 @@ export default function Menu() {
       })
     }, state.tokenExpires)
   }
-  // if(!state.isAuthentication){
-  //   return <Redirect to="/login" />
-  // }
 
-  useEffect(()=> {
+
+  
+  useEffect(()=>{
+    // eslint-disable-next-line
     timeOut()
-  }, [])
+  })
+
+  if(!state.isAuthentication){
+    return <Redirect to="/login" />
+  }
+
 
   return (
     <Fragment>
@@ -117,7 +122,7 @@ export default function Menu() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link
+                  <Link to='/#'
                     className="nav-link"
                     onClick={() =>
                       dispatch({
