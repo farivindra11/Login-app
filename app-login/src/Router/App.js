@@ -1,9 +1,8 @@
 import React, { useReducer, createContext } from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginComp from "../components/Login/LoginComp";
-import Menu from "../components/AdminLte/Menu";
 import Dashboard from "../components/publicView/Dashboard";
-import Coba from "../components/Coba";
+import Menu from "../components/AdminLte/Menu";
 
 /* context => data dan fungsin jadi lebih global */
 export const AuthContext = createContext();
@@ -47,33 +46,14 @@ export default function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <Dashboard />
-        </Route>
-
-        {/*==== Route AdminLTE ==== */}
-        <Route exact path="/update-harga">
-          <Coba />
-        </Route>
-        {/* ================ */}
         <AuthContext.Provider
           value={{
             state,
             dispatch,
           }}
         >
-          {!state.isAuthentication ? (
-            <Redirect to={{ pathname: "/login" }} />
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/admin",
-              }}
-            />
-          )}
-          <Route path="/login">
-            <LoginComp />
-          </Route>
+          <Route exact path="/" component={Dashboard}/>
+          <Route exact path="/login" component={LoginComp} />
           <Route exact path="/admin" component={Menu} />
         </AuthContext.Provider>
       </Switch>
