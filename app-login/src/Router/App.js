@@ -13,6 +13,7 @@ const initialState = {
   isAuthentication: false,
   username: null,
   accessToken: null,
+  tokenExpires:0
 };
 
 const reducer = (state, action) => {
@@ -25,6 +26,7 @@ const reducer = (state, action) => {
         isAuthentication: true,
         username: action.payload.username,
         token: action.payload.accessToken,
+        tokenExpires: action.payload.expiresIn
       };
 
     case "LOGOUT":
@@ -32,7 +34,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         isAuthentication: false,
-        username: action.payload.username,
       };
 
     default:
