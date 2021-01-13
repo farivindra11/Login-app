@@ -9,29 +9,30 @@ export const AuthContext = createContext();
 
 /* initial state */
 const initialState = {
-  isAuthentication: false,
-  username: null,
-  accessToken: null,
-  tokenExpires:0
+  loggedIn: localStorage.getItem("token"),
+  // username: null,
+  // accessToken: null,
+  // tokenExpires:0
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      // localStorage.setItem("username", JSON.stringify(action.payload.username));
+      localStorage.setItem("username", JSON.stringify(action.payload.username));
       localStorage.setItem("token", JSON.stringify(action.payload.accessToken));
+      localStorage.setItem("expires", JSON.stringify(action.payload.expiresIn));
       return {
         ...state,
-        isAuthentication: localStorage.getItem('token'),
-        username: action.payload.username,
-        token: action.payload.accessToken,
-        tokenExpires: action.payload.expiresIn
+        loggedIn: localStorage.getItem("token"),
+        // username: action.payload.username,
+        // token: action.payload.accessToken,
+        // tokenExpires: action.payload.expiresIn
       };
 
     case "LOGOUT":
       localStorage.clear();
       return {
-        isAuthentication: localStorage.getItem('token'), //hilanng lagi
+        loggedIn : localStorage.getItem(''), //hilanng lagi
       };
 
     default:
