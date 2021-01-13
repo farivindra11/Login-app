@@ -1,5 +1,5 @@
 import React, { useReducer, createContext } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import LoginComp from "../components/Login/LoginComp";
 import Dashboard from "../components/publicView/Dashboard";
 import Menu from "../components/AdminLte/Menu";
@@ -18,11 +18,11 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      localStorage.setItem("username", JSON.stringify(action.payload.username));
+      // localStorage.setItem("username", JSON.stringify(action.payload.username));
       localStorage.setItem("token", JSON.stringify(action.payload.accessToken));
       return {
         ...state,
-        isAuthentication: true,
+        isAuthentication: localStorage.getItem('token'),
         username: action.payload.username,
         token: action.payload.accessToken,
         tokenExpires: action.payload.expiresIn
@@ -31,8 +31,7 @@ const reducer = (state, action) => {
     case "LOGOUT":
       localStorage.clear();
       return {
-        ...state,
-        isAuthentication: false,
+        isAuthentication: localStorage.getItem('token'), //hilanng lagi
       };
 
     default:
