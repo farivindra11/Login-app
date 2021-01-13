@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { AuthContext } from "../../Router/App";
 import Header from './Header'
@@ -7,6 +7,9 @@ import Footer from "./Footer";
 
 export default function Menu() {
   const { state, dispatch } = useContext(AuthContext);
+
+  const [item, setitem] = useState(state)
+  console.log(item);
 
   const timeOut = () => {
     setTimeout(()=>{
@@ -18,16 +21,30 @@ export default function Menu() {
   }
 
 
-  
+
+  useEffect(()=>{
+
+    const data = localStorage.getItem('token')
+    
+    if(data){
+      setitem(JSON.parse(data))
+     }
+    
+    },[])
+
+    useEffect(() => {
+      localStorage.setItem('token', JSON.stringify(item))
+    })
+
   useEffect(()=>{
     // eslint-disable-next-line
     timeOut()
-  })
+  },[])
+  console.log(state.isAuthentication, 'ini');
 
-  if(!state.isAuthentication){
-    return <Redirect to="/login" />
+  if (!state.isAuthentication){
+    return <Redirect to='/login' />
   }
-
 
   return (
     <Fragment>
