@@ -1,5 +1,5 @@
 import React, { useReducer, createContext } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginComp from "../components/Login/LoginComp";
 import Dashboard from "../components/publicView/Dashboard";
 import Menu from "../components/AdminLte/Menu";
@@ -10,7 +10,7 @@ export const AuthContext = createContext();
 /* initial state */
 const initialState = {
   loggedIn: localStorage.getItem("token"),
-  // username: null,
+  username: localStorage.getItem("username"),
   // accessToken: null,
   // tokenExpires:0
 };
@@ -24,7 +24,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         loggedIn: localStorage.getItem("token"),
-        // username: action.payload.username,
+        username: localStorage.getItem("username"),
         // token: action.payload.accessToken,
         // tokenExpires: action.payload.expiresIn
       };
