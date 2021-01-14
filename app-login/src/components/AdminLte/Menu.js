@@ -18,13 +18,9 @@ export default function Menu() {
     }, JSON.parse(data));
   };
 
-  //username
-  const namas = localStorage.getItem("username");
-  const nama = JSON.parse(namas);
-
   useEffect(() => {
-    // eslint-disable-next-line
     timeOut();
+    // eslint-disable-next-line
   }, []);
 
   // const loggedIn = localStorage.getItem("");
@@ -32,25 +28,6 @@ export default function Menu() {
     return <Redirect to="/login" />;
   }
 
-  // useEffect(()=>{
-
-  //   const data = localStorage.getItem('username')
-
-  //   if(data){
-  //     setitem(JSON.parse(data))
-  //    }
-
-  //   },[])
-
-  //   useEffect(() => {
-  //     localStorage.setItem('username', JSON.stringify(item))
-  //   })
-  //   console.log(item);
-  // console.log(state.isAuthentication, 'ini');
-
-  // if (isAuthentication){
-  //   return <Redirect to='/login' />
-  // }
 
   return (
     <Fragment>
@@ -80,7 +57,7 @@ export default function Menu() {
             </div>
             <div className="info">
               <Link to="#" className="d-block">
-                Hello, <b>{nama}</b>
+                Hello, <b>{JSON.parse(state.username)}</b>
               </Link>
             </div>
           </div>
