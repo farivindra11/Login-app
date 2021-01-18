@@ -1,11 +1,12 @@
 import React, { Fragment, useContext, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Router/App";
 import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
 
-export default function Menu() {
+export default function Menu(props) {
+  console.log(props);
   const { state, dispatch } = useContext(AuthContext);
 
   const timeOut = () => {
@@ -35,7 +36,7 @@ export default function Menu() {
       {/* Main Sidebar Container */}
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         {/* Brand Logo */}
-        <Link to="#" className="brand-link">
+        <NavLink to="#" className="brand-link">
           <img
             src="dist/img/magetan.png"
             alt="Siskaperbapo"
@@ -43,7 +44,7 @@ export default function Menu() {
             // style={{ opacity: ".8" }}
           />
           <span className="brand-text font-weight-light">SISKAPERBAPO</span>
-        </Link>
+        </NavLink>
         {/* Sidebar */}
         <div className="sidebar">
           {/* Sidebar user panel (optional) */}
@@ -56,9 +57,9 @@ export default function Menu() {
               />
             </div>
             <div className="info">
-              <Link to="#" className="d-block">
+              <NavLink to="#" className="d-block">
                 Hello, <b>{JSON.parse(state.username)}</b>
-              </Link>
+              </NavLink>
             </div>
           </div>
           {/* Sidebar Menu */}
@@ -70,56 +71,56 @@ export default function Menu() {
               data-accordion="false"
             >
               <li className="nav-item">
-                <Link to="/dashboard" className="nav-link">
+                <NavLink to="/dashboard" className="nav-link">
                   <i className="nav-icon fas fa-tachometer-alt" />
                   <p>Dashboard</p>
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link to="/update-harga" className="nav-link">
+                <NavLink to="/update-harga" className="nav-link">
                   <i className="nav-icon fas fa-money-check-alt" />
                   <p>Update Harga</p>
-                </Link>
+                </NavLink>
               </li>
 
               <li className="nav-header">Data Master</li>
               <li className="nav-item">
-                <Link to="/data-bahan-pokok" className="nav-link">
+                <NavLink to="/data-bahan-pokok" className="nav-link">
                   <i className="nav-icon fas fa-database" />
                   <p>Data Bahan Pokok</p>
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link to="/data-pasar" className="nav-link">
+                <NavLink to="/data-pasar" className="nav-link">
                   <i className="nav-icon fas fa-database" />
                   <p>Data Pasar</p>
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link to="/data-kategori" className="nav-link">
+                <NavLink to="/data-kategori" className="nav-link">
                   <i className="nav-icon fas fa-database" />
                   <p>Data Kategori</p>
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link to="/data-satuan" className="nav-link">
+                <NavLink to="/data-satuan" className="nav-link">
                   <i className="nav-icon fas fa-database" />
                   <p>Data Satuan</p>
-                </Link>
+                </NavLink>
               </li>
 
               <li className="nav-header">Akun</li>
               <li className="nav-item">
-                <Link to="/data-pengguna" className="nav-link">
+                <NavLink to="/data-pengguna" className="nav-link">
                   <i className="nav-icon fas fa-id-card" />
                   <p>Data Pengguna</p>
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link to="/pengaturan-akun" className="nav-link">
+                <NavLink to="/pengaturan-akun" className="nav-link">
                   <i className="nav-icon fas fa-user-cog" />
                   <p>Pengaturan Akun</p>
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
                 <Link
